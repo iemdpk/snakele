@@ -1,0 +1,49 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class dropdownRow : MonoBehaviour
+{
+    public GameObject rowBar;
+    public float a;
+    public int b; 
+    float smooth = 5.0f;
+    float tiltAngle = 60.0f;
+    // Start is called before the first frame update
+    void Start()
+    {
+        rowBar = GameObject.Find("cube");
+        // Debug.Log("It is WOrking ");
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+
+        if(Input.GetKey("d")){
+            // Debug.Log("You Pressed THe W");
+            
+            a = rowBar.transform.rotation.z;
+
+            b = (int)a+1;
+
+            transform.Rotate(new Vector3(0,0,1));
+
+        }
+
+
+        if(Input.GetKey("a")){
+            // Debug.Log("You Pressed THe W");
+
+            a = rowBar.transform.rotation.z;
+
+            b = (int)a-1;
+
+            transform.Rotate(new Vector3(0,0,-1));
+
+        }
+
+    //  Debug.Log("It is just Started working");
+    }
+}
