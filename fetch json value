@@ -1,0 +1,50 @@
+using System.Collections;
+using UnityEngine;
+using SimpleJSON;
+using UnityEngine.Networking;
+using TMPro;
+
+public class helloWorld : MonoBehaviour
+{
+
+    public void GetJsonData()
+    {
+        StartCoroutine(RequestWebService());
+    }
+
+    IEnumerator RequestWebService()
+    {
+        string getDataUrl = "http://geoplugin.net/json.gp?ip=157.37.222.199";
+        print(getDataUrl);
+
+        using (UnityWebRequest webData = UnityWebRequest.Get(getDataUrl))
+        {
+
+            yield return webData.SendWebRequest();
+            if (webData.isNetworkError || webData.isHttpError)
+            {
+                print("---------------- ERROR ----------------");
+                print(webData.error);
+            }
+            else
+            {
+                if (webData.isDone)
+                {
+                    JSONNode jsonData = JSON.Parse(System.Text.Encoding.UTF8.GetString(webData.downloadHandler.data));
+
+                    if (jsonData == null)
+                    {
+                        print("---------------- NO DATA ----------------");
+                    }
+                    else
+                    {
+                        print("---------------- JSON DATA ----------------");
+                        print("jsonData.Count:" + jsonData.Count);
+                        print(jsonData["geoplugin_countryName"]);
+                        // continentTxt.text = jsonData["geoplugin_continentName"];
+                    }
+                }
+            }
+        }
+    }
+}
