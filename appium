@@ -1,0 +1,11 @@
+from appium import webdriver
+ 
+desired_caps = {}
+desired_caps['platformName'] = 'Android'
+desired_caps['deviceName'] = '9fba5cd7'
+desired_caps['appPackage'] = 'com.spotlocdaughter'
+desired_caps['appActivity'] = '.MainActivity'
+#desired_caps['app'] = './app-debug.apk'
+ 
+# This will launch your Android application.
+driver = webdriver.Remote('http://localhost:4723/wd/hub', desired_caps)
