@@ -1,0 +1,4 @@
+options = Options()
+options.add_experimental_option("excludeSwitches", ["enable-logging"])
+options.add_argument("--profile-directory=Default")
+options.add_argument("--user-data-dir=/var/tmp/chrome_user_data")
